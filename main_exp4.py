@@ -1,6 +1,6 @@
 from model import VGG_16
 from metrics import precision, recall, class_one_accuracy, class_two_accuracy, class_three_accuracy, class_four_accuracy
-from data_loaders import dataloader
+from data_loaders import dataloader, testdataloader
 from focal_loss import focal_loss
 from tensorflow.keras.metrics import categorical_accuracy
 from tensorflow.keras.optimizers import Adam
@@ -59,3 +59,7 @@ plt.xlabel("Epochs")
 plt.ylabel("Loss Value")
 plt.legend();
 plt.show()
+
+# Only run after model has been elected
+X_test, y_test = testdataloader()
+model.evaluate(X_test, y_test, batch_size = 32)

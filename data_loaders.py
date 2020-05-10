@@ -256,3 +256,40 @@ def dataloader_augmented():
         y_val[i,:] = val_label[i]
 
     return X, y, X_val, y_val
+
+
+def testdataloader():
+
+    img_list = []
+    label_list = []
+    path = 'data/Test_dataset'
+
+    with open('data/Test_dataset.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=';')
+        for row in csv_reader:
+            img_list.append(row[0])
+            label = np.zeros(4)
+            for i in range(1,5):
+                if row[i] == '1.0':
+                    label[i-1] = 1
+                    break
+            label_list.append(label)
+
+    data = list(zip(img_list, label_list))
+    shuffle(data)
+    img_list[:], label_list[:] = zip(*data)
+
+    total = len(img_list)
+
+    X = np.zeros((total, 256, 256, 3), dtype=np.float32)
+    y = np.zeros((total, 4), dtype=np.float32)
+
+    for i in range(total):
+        #print(i)
+        img = imread(os.path.join(path, img_list[i] + ".jpg"))
+        img = img/256
+
+        X[i,:,:,:] = img
+        y[i,:] = label_list[i]
+
+    return X, y
