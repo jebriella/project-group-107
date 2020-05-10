@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Activation, Flatten, Input, BatchNormalization, Dropout
 
-def VGG_16(img_size, f_maps, dropout = 0, s_dropout = 0):
+def VGG_16(img_size, f_maps, dropout = 0):
     inputs = Input((img_size[0], img_size[1], img_size[2]))
 
     # First block
