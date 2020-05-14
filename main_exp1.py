@@ -12,6 +12,7 @@ f_maps = 16
 l_rate = 0.0001
 batch_s = 32
 n_epochs = 100
+pb_norm = True
 p_dropout = 0.4
 
 # Weigths
@@ -25,7 +26,7 @@ c_weight = {0: s1/ss, 1: s2/ss, 2: s3/ss, 3: s4/ss}
 
 X, y, X_val, y_val = dataloader()
 
-model = VGG_16(img_size, f_maps, dropout = p_dropout)
+model = VGG_16(img_size, f_maps, b_norm = pb_norm, dropout = p_dropout)
 
 model.compile(loss='categorical_crossentropy',
               optimizer = Adam(lr=l_rate),

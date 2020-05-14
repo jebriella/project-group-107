@@ -13,6 +13,7 @@ f_maps = 32
 l_rate = 0.00001
 batch_s = 32
 n_epochs = 100
+pb_norm = True
 p_dropout = 0.4
 gamma = 2
 
@@ -27,7 +28,7 @@ alpha = [s1/ss, s2/ss, s3/ss, s4/ss]
 
 X, y, X_val, y_val = dataloader()
 
-model = VGG_16(img_size, f_maps, dropout = p_dropout)
+model = VGG_16(img_size, f_maps, b_norm = pb_norm, dropout = p_dropout)
 
 model.compile(loss=focal_loss(alpha, gamma),
               optimizer = Adam(lr=l_rate),
